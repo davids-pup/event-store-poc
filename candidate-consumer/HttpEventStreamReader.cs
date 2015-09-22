@@ -20,7 +20,7 @@ namespace candidate_consumer
         private Uri GetLast(Uri head)
         {
             var request = (HttpWebRequest)WebRequest.Create(head);
-            request.Credentials = new NetworkCredential("admin", "changeit");
+            //request.Credentials = new NetworkCredential("admin", "changeit");
             request.Accept = "application/atom+xml";
             try
             {
