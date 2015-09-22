@@ -6,13 +6,18 @@
   ],
   "projectUrl": "",
   "licenseUrl": "",
-  "dependencies": {
-    "EventStore.Client": "3.2.1"
-  },
   "commands": {
     "run": "run"
   },
   "frameworks": {
-    "dnx451": {}
+    "dnx451": {
+		"dependencies": {
+	      "EventStore.Client": "3.2.1"
+	    },
+	    "frameworkAssemblies": {
+	      "System.ServiceModel": "4.0.0.0",
+		  "System.Xml":"4.0.0.0"
+	    }
+	}
   }
 }
