@@ -11,13 +11,20 @@
   },
   "frameworks": {
     "dnx451": {
-		"dependencies": {
-	      "EventStore.Client": "3.2.1"
-	    },
-	    "frameworkAssemblies": {
-	      "System.ServiceModel": "4.0.0.0",
-		  "System.Xml":"4.0.0.0"
-	    }
-	}
+      "dependencies": {
+        "EventStore.Client": "3.2.1",
+        "JustGiving.EventStore.Http.Client": "1.0.145.0",
+        "JustGiving.EventStore.Http.SubscriberHost": "1.0.145.0",
+		"log4net": "2.0.3",
+	    "NewtonSoft.json": "7.0.1"
+      },
+      "frameworkAssemblies": {
+        "System.ServiceModel": "4.0.0.0",
+        "System.Xml": "4.0.0.0"
+      }
+    }
+  },
+  "dependencies": {
+
   }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using log4net;
 
 namespace candidate_consumer
 {
@@ -9,6 +10,8 @@ namespace candidate_consumer
     {
         public void Main(string[] args)
         {
+			 //log4net.Config.BasicConfigurator.Configure();
+
             if (args[0] == "tcp")
             {
 				// Read using tcp
@@ -45,6 +48,11 @@ namespace candidate_consumer
 		            time.Milliseconds / 10);
 		        Console.WriteLine("RunTime with http is " + elapsedTime);
 			}
+			else if(args[0] == "jgClient")
+			{
+                Console.WriteLine("running jgClient");
+                new JustGivingClient().Test();
+            }
 
             Console.WriteLine("waiting for events. press enter to exit");
 			Console.ReadLine();
