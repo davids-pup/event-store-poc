@@ -20,7 +20,7 @@ namespace candidate_consumer
 
             var subscriber = EventStreamSubscriber.Create(settingsBuilder);
             var @event = await connection.ReadEventAsync("candidates", 0);
-            Console.WriteLine("Atleast an event is fetched" + @event.EventInfo.Content.EventType);
+            Console.WriteLine("At least an event is fetched " + @event.EventInfo.Content.EventType);
 
             subscriber.SubscribeTo("candidates");
         }
@@ -39,7 +39,7 @@ namespace candidate_consumer
         public IEnumerable GetHandlersOf(Type handlerType)
         {
             Console.WriteLine(handlerType.ToString());
-			
+
             var array = new[] { new CandidateCreatedEventHandler() };
             return array;
         }
