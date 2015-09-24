@@ -5,6 +5,7 @@ Proof of concept (POC) for reading from event store. Different programs to read 
 ###Running service
 
 Need an event store with events in it first, can use this project in order to do so - [event-store-ground](https://github.com/humblelistener/event-store-ground)
+This will populate your event store with randomly generated candidates.
 
 Once you have events to read, can then run this service.
 Commands to run are:
