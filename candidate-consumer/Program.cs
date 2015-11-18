@@ -10,7 +10,7 @@ namespace candidate_consumer
     {
         public void Main(string[] args)
         {
-			 //log4net.Config.BasicConfigurator.Configure();
+			 log4net.Config.BasicConfigurator.Configure();
 
             if (args[0] == "tcp")
             {

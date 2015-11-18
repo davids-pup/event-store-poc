@@ -10,27 +10,19 @@ namespace candidate_consumer
     {
         public async void Test()
         {
-            var connection = EventStoreHttpConnection.Create(ConnectionSettings.Default, "http://192.168.99.100:2113");
+            var connection = EventStoreHttpConnection.Create(ConnectionSettings.Default, "http://192.168.98.100:2113");
             var handlerResolver = new EventHandlerResolver();
-            var typeResolver = new EventTypeResolver();
+             var typeResolver = new EventTypeResolver();
 
             var settingsBuilder = new EventStreamSubscriberSettingsBuilder(connection, handlerResolver, new MemoryBackedStreamPositionRepositoryForDebugging());
             settingsBuilder.WithLogger(log4net.LogManager.GetLogger(typeof(JustGivingClient)));
-            settingsBuilder.WithCustomEventTypeResolver(typeResolver);
+            //  settingsBuilder.WithCustomEventTypeResolver(typeResolver);
 
             var subscriber = EventStreamSubscriber.Create(settingsBuilder);
             var @event = await connection.ReadEventAsync("candidates", 0);
-            Console.WriteLine("At least an event is fetched " + @event.EventInfo.Content.EventType);
+            Console.WriteLine("At least an event is fetched " + @event);
 
             subscriber.SubscribeTo("candidates");
-        }
-    }
-
-    public class EventTypeResolver : IEventTypeResolver
-    {
-        public Type Resolve(string fullName)
-        {
-            return typeof(CandidateCreatedEvent);
         }
     }
 
@@ -38,9 +30,15 @@ namespace candidate_consumer
     {
         public IEnumerable GetHandlersOf(Type handlerType)
         {
-            Console.WriteLine(handlerType.ToString());
+            Console.WriteLine("handlerType : " + handlerType.ToString());
 
-            var array = new[] { new CandidateCreatedEventHandler() };
+            var array = new object[] {  };
+
+            // if (!handlerType.ToString().Contains("AndMetadata"))
+            {
+              array = new[] { new CandidateCreatedEventHandler() };
+            }
+
             return array;
         }
     }
@@ -61,6 +59,8 @@ namespace candidate_consumer
         }
     }
 
+
+    [System.ComponentModel.DefaultEvent("personalDetails-updated")]
     public class CandidateCreatedEvent
     {
         public string FirstName { get; set; }
